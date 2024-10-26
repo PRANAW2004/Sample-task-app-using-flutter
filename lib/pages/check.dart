@@ -14,7 +14,8 @@ class _CheckPageState extends State<CheckPage>{
   List<bool> _isSelected =[true,false,false];
   var _elevatedButtonColor = Colors.white;
   // var _checkIcon = Icon(Icons.circle_outlined,color: Colors.black);
-  bool _checkIcon = true;
+  List<bool> _checkIcon = [false,false,false,false,false];
+  // var _checkIcon = true;
 
   final List<String> _checkdata = ["Turn on oven","Turn on Deep Fat fryer","Turn on Bain Marie","setup workstations", "Food preparations areas are clean"];
 
@@ -137,14 +138,16 @@ class _CheckPageState extends State<CheckPage>{
             ),
           SizedBox(height:20),
           Column(
+            
            children: [
-            for(var item in _checkdata) Column(
+            if(_isSelected[0])Column(
+                children: [for(int i = 0;i<_checkdata.length;i++) Column(
               children: [
                 Padding(
-                  key: UniqueKey(),
                   padding: EdgeInsets.only(left:22.0,right: 22.0),
                   child: Container(
                     // height: 50,
+                  key: UniqueKey(),
                     constraints: BoxConstraints(minWidth: 300,minHeight: 70),
                     decoration: BoxDecoration(
                       border: Border.all(width: 1,color: Colors.grey.shade300),
@@ -161,7 +164,9 @@ class _CheckPageState extends State<CheckPage>{
                                 () => {
                                   setState(() => {
                                     print("Inside the setState function"),
-                                    _checkIcon = !_checkIcon,
+                                    print(_checkdata[i]),
+                                    _checkIcon[i] = !_checkIcon[i],
+                                    // Icons.check_circle_rounded,color
                                   })
                                 }
                                 ),
@@ -174,7 +179,7 @@ class _CheckPageState extends State<CheckPage>{
                               ),
                               side: BorderSide.none, 
                             ),
-                          child: Icon(Icons.circle_outlined,color: Colors.black),
+                          child: Icon(_checkIcon[i]?Icons.circle_outlined:Icons.check_circle_rounded,color:_checkIcon[i]?Colors.black:Colors.green),
                           )
                           ),
 
@@ -182,7 +187,7 @@ class _CheckPageState extends State<CheckPage>{
 
                           // Icon(Icons.circle_outlined,color: Colors.black),
                           SizedBox(width: 15),
-                          Text(item,style: TextStyle(color: Colors.grey,fontSize: 14)),
+                          Text(_checkdata[i],style: TextStyle(color: Colors.grey,fontSize: 14)),
                           // SizedBox(width:50),
                           Spacer(),
                           Padding(
@@ -216,8 +221,8 @@ class _CheckPageState extends State<CheckPage>{
                   ),
                 SizedBox(height:10),
               ],
-            )
-
+            )]
+            ),
            ],
           
           ),
