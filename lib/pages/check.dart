@@ -13,7 +13,6 @@ class _CheckPageState extends State<CheckPage>{
 
   List<bool> _isSelected =[true,false,false];
   var _elevatedButtonColor = Colors.white;
-  // var _checkIcon = Icon(Icons.circle_outlined,color: Colors.black);
   List<bool> _checkIcon = [false,false,false,false,false];
   // var _checkIcon = true;
 
@@ -130,6 +129,19 @@ class _CheckPageState extends State<CheckPage>{
                   child: ElevatedButton(
                     onPressed: () => {setState(() {
                       _elevatedButtonColor = _elevatedButtonColor == Colors.white? Colors.teal:Colors.white;
+                        for(var i=0;i<_checkIcon.length;i++){
+                          if(_elevatedButtonColor == Colors.teal){
+                          if(_checkIcon[i] == false){
+                            _checkIcon[i] = true;
+                          }
+                          }else{
+                            if(_checkIcon[i] == true){
+                              _checkIcon[i] = false;
+                            }
+                          }
+                        }
+                      
+                      
                     })},
                     style: ElevatedButton.styleFrom(backgroundColor: _elevatedButtonColor),
                       child: Text("MARK ALL AS DONE", style: TextStyle(color: _elevatedButtonColor == Colors.white?Colors.black:Colors.white))),
@@ -179,7 +191,7 @@ class _CheckPageState extends State<CheckPage>{
                               ),
                               side: BorderSide.none, 
                             ),
-                          child: Icon(_checkIcon[i]?Icons.circle_outlined:Icons.check_circle_rounded,color:_checkIcon[i]?Colors.black:Colors.green),
+                          child: Icon(_checkIcon[i]?Icons.check_circle_rounded:Icons.circle_outlined,color:_checkIcon[i]?Colors.green:Colors.black),
                           )
                           ),
 
