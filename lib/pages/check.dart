@@ -13,6 +13,8 @@ class _CheckPageState extends State<CheckPage>{
 
   List<bool> _isSelected =[true,false,false];
   var _elevatedButtonColor = Colors.white;
+  // var _checkIcon = Icon(Icons.circle_outlined,color: Colors.black);
+  bool _checkIcon = true;
 
   final List<String> _checkdata = ["Turn on oven","Turn on Deep Fat fryer","Turn on Bain Marie","setup workstations", "Food preparations areas are clean"];
 
@@ -71,7 +73,7 @@ class _CheckPageState extends State<CheckPage>{
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(
-                color: Colors.green,
+                color: Colors.teal,
                 ),
                 borderRadius: BorderRadius.circular(40),
               ),
@@ -103,16 +105,16 @@ class _CheckPageState extends State<CheckPage>{
               children: [
                 Container(decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(36),
-                color: _isSelected[0]?Colors.green:Colors.white,                
+                color: _isSelected[0]?Colors.teal:Colors.white,                
               ),width: 120,height: 50, child: Center(child: Text("CHECK",style: TextStyle(color: _isSelected[0]?Colors.white:Colors.black)))), 
               Container(decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(36),
-                color: _isSelected[1]?Colors.green:Colors.white,
+                color: _isSelected[1]?Colors.teal:Colors.white,
                 
               ),width: 120,height: 50,child: Center(child: Text("FRIDGES",style: TextStyle(color: _isSelected[1]?Colors.white:Colors.black)))), 
               Container(decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(36),
-                color: _isSelected[2]?Colors.green:Colors.white,
+                color: _isSelected[2]?Colors.teal:Colors.white,
                 
               ),width: 120,height: 50,child: Center(child: Text("FREEZERS",style: TextStyle(color: _isSelected[2]?Colors.white:Colors.black))))],
               ),
@@ -126,7 +128,7 @@ class _CheckPageState extends State<CheckPage>{
                   padding: EdgeInsets.only(left:22.0),
                   child: ElevatedButton(
                     onPressed: () => {setState(() {
-                      _elevatedButtonColor = _elevatedButtonColor == Colors.white? Colors.green:Colors.white;
+                      _elevatedButtonColor = _elevatedButtonColor == Colors.white? Colors.teal:Colors.white;
                     })},
                     style: ElevatedButton.styleFrom(backgroundColor: _elevatedButtonColor),
                       child: Text("MARK ALL AS DONE", style: TextStyle(color: _elevatedButtonColor == Colors.white?Colors.black:Colors.white))),
@@ -135,7 +137,89 @@ class _CheckPageState extends State<CheckPage>{
             ),
           SizedBox(height:20),
           Column(
-           
+           children: [
+            for(var item in _checkdata) Column(
+              children: [
+                Padding(
+                  key: UniqueKey(),
+                  padding: EdgeInsets.only(left:22.0,right: 22.0),
+                  child: Container(
+                    // height: 50,
+                    constraints: BoxConstraints(minWidth: 300,minHeight: 70),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1,color: Colors.grey.shade300),
+                      ),
+                      child: Row(
+                       
+                        children: [
+                          SizedBox(width:10),
+                          SizedBox(
+                            height:20,
+                            width:20,
+                            child:ElevatedButton(
+                              onPressed: (
+                                () => {
+                                  setState(() => {
+                                    print("Inside the setState function"),
+                                    _checkIcon = !_checkIcon,
+                                  })
+                                }
+                                ),
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              padding: EdgeInsets.zero, 
+                              backgroundColor: Colors.transparent, 
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero, 
+                              ),
+                              side: BorderSide.none, 
+                            ),
+                          child: Icon(Icons.circle_outlined,color: Colors.black),
+                          )
+                          ),
+
+
+
+                          // Icon(Icons.circle_outlined,color: Colors.black),
+                          SizedBox(width: 15),
+                          Text(item,style: TextStyle(color: Colors.grey,fontSize: 14)),
+                          // SizedBox(width:50),
+                          Spacer(),
+                          Padding(
+                              padding: EdgeInsets.only(right: 10.0),
+                              child: SizedBox(
+                            height:20,
+                            width:20,
+
+                              child: ElevatedButton(
+                              onPressed: (() => print("I am pressed")),
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                padding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.zero,
+                                ),
+                                side: BorderSide.none,
+                              ),
+                              child: Icon(Icons.cancel_outlined,color: Colors.grey),
+                            )
+                            
+                          ),
+                          ),
+                          
+                          
+                        ]
+                      )
+                      
+                      )
+                  ),
+                SizedBox(height:10),
+              ],
+            )
+
+           ],
+          
           ),
           
           ]
