@@ -103,20 +103,29 @@ class _CheckPageState extends State<CheckPage>{
                 }
               })},
               children: [
-                Container(decoration: BoxDecoration(
+                Container(
+                  
+                  decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(36),
                 color: _isSelected[0]?Colors.teal:Colors.white,                
               ),width: 120,height: 50, child: Center(child: Text("CHECK",style: TextStyle(color: _isSelected[0]?Colors.white:Colors.black)))), 
-              Container(decoration: BoxDecoration(
+              Container(
+                
+                decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(36),
                 color: _isSelected[1]?Colors.teal:Colors.white,
                 
               ),width: 120,height: 50,child: Center(child: Text("FRIDGES",style: TextStyle(color: _isSelected[1]?Colors.white:Colors.black)))), 
-              Container(decoration: BoxDecoration(
+              Container(
+                
+                decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(36),
                 color: _isSelected[2]?Colors.teal:Colors.white,
                 
-              ),width: 120,height: 50,child: Center(child: Text("FREEZERS",style: TextStyle(color: _isSelected[2]?Colors.white:Colors.black))))],
+              ),
+              width: 120,height: 50,
+              child: Center(child: Text("FREEZERS",style: TextStyle(color: _isSelected[2]?Colors.white:Colors.black))))
+              ],
               ),
             ),
               ]
