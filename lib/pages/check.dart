@@ -14,6 +14,8 @@ class _CheckPageState extends State<CheckPage>{
   List<bool> _isSelected =[true,false,false];
   var _elevatedButtonColor = Colors.white;
   List<bool> _checkIcon = [false,false,false,false,false];
+  var counter1 = 0;
+  var counter2 = 0;
   // var _checkIcon = true;
 
   final List<String> _checkdata = ["Turn on oven","Turn on Deep Fat fryer","Turn on Bain Marie","setup workstations", "Food preparations areas are clean"];
@@ -104,7 +106,6 @@ class _CheckPageState extends State<CheckPage>{
               })},
               children: [
                 Container(
-                  
                   decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(36),
                 color: _isSelected[0]?Colors.teal:Colors.white,                
@@ -131,7 +132,15 @@ class _CheckPageState extends State<CheckPage>{
               ]
           ),
           SizedBox(height: 10),
-          Row(
+     
+          
+          Column(
+            
+           children: [
+            if(_isSelected[0])Column(
+                     
+                children: [
+                  Row(
               children: [
                 Padding(
                   padding: EdgeInsets.only(left:22.0),
@@ -157,12 +166,8 @@ class _CheckPageState extends State<CheckPage>{
                 )
               ],
             ),
-          SizedBox(height:20),
-          Column(
-            
-           children: [
-            if(_isSelected[0])Column(
-                children: [for(int i = 0;i<_checkdata.length;i++) Column(
+            SizedBox(height:20),
+            for(int i = 0;i<_checkdata.length;i++) Column(
               children: [
                 Padding(
                   padding: EdgeInsets.only(left:22.0,right: 22.0),
@@ -178,57 +183,28 @@ class _CheckPageState extends State<CheckPage>{
                         children: [
                           SizedBox(width:10),
                           SizedBox(
-                            height:20,
-                            width:20,
-                            child:ElevatedButton(
+                            child:IconButton(
                               onPressed: (
                                 () => {
                                   setState(() => {
-                                    print("Inside the setState function"),
-                                    print(_checkdata[i]),
                                     _checkIcon[i] = !_checkIcon[i],
-                                    // Icons.check_circle_rounded,color
                                   })
                                 }
                                 ),
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              padding: EdgeInsets.zero, 
-                              backgroundColor: Colors.transparent, 
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.zero, 
-                              ),
-                              side: BorderSide.none, 
-                            ),
-                          child: Icon(_checkIcon[i]?Icons.check_circle_rounded:Icons.circle_outlined,color:_checkIcon[i]?Colors.green:Colors.black),
+                          icon: Icon(_checkIcon[i]?Icons.check_circle_rounded:Icons.circle_outlined,color:_checkIcon[i]?Colors.green:Colors.black),
                           )
                           ),
 
-
-
-                          // Icon(Icons.circle_outlined,color: Colors.black),
-                          SizedBox(width: 15),
+                          SizedBox(width: 5),
                           Text(_checkdata[i],style: TextStyle(color: Colors.grey,fontSize: 14)),
                           // SizedBox(width:50),
                           Spacer(),
                           Padding(
                               padding: EdgeInsets.only(right: 10.0),
                               child: SizedBox(
-                            height:20,
-                            width:20,
-
-                              child: ElevatedButton(
+                              child: IconButton(
                               onPressed: (() => print("I am pressed")),
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                padding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.zero,
-                                ),
-                                side: BorderSide.none,
-                              ),
-                              child: Icon(Icons.cancel_outlined,color: Colors.grey),
+                              icon: Icon(Icons.cancel_outlined,color: Colors.grey),
                             )
                             
                           ),
@@ -243,6 +219,127 @@ class _CheckPageState extends State<CheckPage>{
                 SizedBox(height:10),
               ],
             )]
+            )else if(_isSelected[1]) Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10.0,right:10.0),
+                  child: Container(
+                    constraints: BoxConstraints(minHeight: 130),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1,color: Colors.grey.shade300),
+                    ),
+                    child: Column(
+                      children: [
+                          // mainAxisAlignment: MainAxisAlignment.start, 
+                            Padding(padding: EdgeInsets.all(5),
+                              child: Row(
+                                    children: [
+                                        const Icon(Icons.kitchen , color: Colors.yellow,size: 30),
+                                        SizedBox(width:10),
+                            const Text(
+                              'Fridge 1',
+                                style: TextStyle(
+                                fontSize: 19,
+                                // fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            Spacer(),
+                            Text('$counter1'),
+                            IconButton(
+                              icon: const Icon(Icons.arrow_circle_up,color:Colors.grey),
+                              onPressed: () => {
+                                setState(() => {
+                                      counter1++,
+                                })
+                              } ,
+                            ),
+                                    ],
+                              ),  
+                        ),
+                        // const SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.only(left:10.0,right:10.0),
+                          child: TextField(
+                          decoration: InputDecoration(
+                            filled: true, 
+                          fillColor: Colors.grey[200],
+                            hintText: 'Enter your comment here',
+                            border: const OutlineInputBorder(),
+                            
+                          ),
+                        ),
+                        ),
+                        
+                      ],
+                      )
+                  )
+                  ),
+                  const SizedBox(height: 16),
+                  Padding(
+                    padding: EdgeInsets.only(left:15.0),
+                    child: ElevatedButton(
+                    
+                    onPressed: () {},
+                    child: const Text('Leave a comment',style: TextStyle(color: Colors.white),),
+                    style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                  ),
+             
+          ),
+                  ),
+                  
+              ],
+
+            )else if(_isSelected[2]) Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      Padding(
+                        padding: EdgeInsets.only(left:10.0,right:10.0),
+                        child: Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                constraints: BoxConstraints(minHeight: 75),
+                                decoration: BoxDecoration(
+                                  border: Border.all(width: 1,color: Colors.grey.shade300),
+                                ),
+                                child: Row(
+                                children: [
+                                  Icon(Icons.kitchen,color: Colors.yellow,size:40),
+                                  SizedBox(width:10),
+                                  Text("Freezer 1",style: TextStyle(color: Colors.grey,fontSize: 18)),
+                                  Spacer(),
+                                  Text('$counter2'),
+                                  IconButton(icon: Icon(
+                                    Icons.arrow_drop_down_circle),
+                                    onPressed: () => {
+                                      setState(() => {
+                                        counter2--,
+                                      })
+                                    },
+                                    )
+                              ],
+                          )
+                        ),
+                        SizedBox(height:15),
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                            Text("Leave a Comment",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20)),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 1,color:const Color.fromARGB(255, 192, 189, 189)),
+                              ),
+                            )
+                          ],),
+                        ),
+                        ],)
+                      )
+                  ],
             ),
            ],
           
