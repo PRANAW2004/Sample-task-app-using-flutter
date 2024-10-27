@@ -26,9 +26,15 @@ class _CheckPageState extends State<CheckPage>{
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back, 
+        leading: IconButton(
+          onPressed: () => {
+            Navigator.pop(context),
+          },
+            icon: Icon(Icons.arrow_back)
         )
+        // Icon(
+        //   Icons.arrow_back, 
+        // )
       ),
       body: Container(
         alignment: Alignment(0,-1),
